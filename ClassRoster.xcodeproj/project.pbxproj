@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		161FD64A199818F600A56AE2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161FD649199818F600A56AE2 /* Person.swift */; };
 		16FB8C4D1996F611001182EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB8C4C1996F611001182EC /* AppDelegate.swift */; };
 		16FB8C501996F611001182EC /* ClassRoster.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 16FB8C4E1996F611001182EC /* ClassRoster.xcdatamodeld */; };
 		16FB8C521996F611001182EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB8C511996F611001182EC /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		161FD649199818F600A56AE2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		16FB8C471996F611001182EC /* ClassRoster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassRoster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16FB8C4B1996F611001182EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16FB8C4C1996F611001182EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				16FB8C4C1996F611001182EC /* AppDelegate.swift */,
 				16FB8C511996F611001182EC /* ViewController.swift */,
+				161FD649199818F600A56AE2 /* Person.swift */,
 				16FB8C531996F611001182EC /* Main.storyboard */,
 				16FB8C561996F611001182EC /* Images.xcassets */,
 				16FB8C4E1996F611001182EC /* ClassRoster.xcdatamodeld */,
@@ -213,6 +216,7 @@
 			files = (
 				16FB8C521996F611001182EC /* ViewController.swift in Sources */,
 				16FB8C4D1996F611001182EC /* AppDelegate.swift in Sources */,
+				161FD64A199818F600A56AE2 /* Person.swift in Sources */,
 				16FB8C501996F611001182EC /* ClassRoster.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +403,7 @@
 				16FB8C681996F611001182EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		16FB8C691996F611001182EC /* Build configuration list for PBXNativeTarget "ClassRosterTests" */ = {
 			isa = XCConfigurationList;
@@ -407,6 +412,7 @@
 				16FB8C6B1996F611001182EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
