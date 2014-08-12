@@ -23,7 +23,6 @@ class Person: NSObject
     
     func fullName() -> NSString
     {
-        var fullName = self.firstName! + " " + self.lastName!
-        return fullName
+        return self.firstName! + " " + self.lastName!
     }
 }

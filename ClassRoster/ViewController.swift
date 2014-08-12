@@ -15,9 +15,17 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    var nameList = [["firstName":"Dave","lastName":"Fry"],["firstName":"Jake","lastName":"Hawken"]]
+    
+    var classRoster = [Person]()
+    
     func initList()
     {
-        
+        for name in nameList
+        {
+            var newPerson = Person(firstInput: name["firstName"]!, lastInput: name["lastName"]!)
+            classRoster.append(newPerson)
+        }
     }
     
     
