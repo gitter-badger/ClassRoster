@@ -1,5 +1,5 @@
 //
-//  openStudentViewController.swift
+//  DetailViewController.swift
 //  ClassRoster
 //
 //  Created by Jacob Hawken on 8/13/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class openStudentViewController: UIViewController {
+class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
