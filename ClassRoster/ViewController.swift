@@ -41,14 +41,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         var personForRow = self.classRoster[indexPath.row]
-        cell.textLabel.text = personForRow.firstName
+        cell.textLabel.text = personForRow.fullName()
         
         return cell
     }
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
     {
-        println(indexPath.section)
+        println(indexPath.item)
     }
     
 

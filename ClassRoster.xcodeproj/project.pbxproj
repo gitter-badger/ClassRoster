@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		161FD64A199818F600A56AE2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161FD649199818F600A56AE2 /* Person.swift */; };
 		168AF118199BD662003C03F2 /* canvasClassRoster.plist in Resources */ = {isa = PBXBuildFile; fileRef = 168AF117199BD662003C03F2 /* canvasClassRoster.plist */; };
+		168AF11A199BEDC4003C03F2 /* openStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168AF119199BEDC4003C03F2 /* openStudentViewController.swift */; };
 		16FB8C4D1996F611001182EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB8C4C1996F611001182EC /* AppDelegate.swift */; };
 		16FB8C501996F611001182EC /* ClassRoster.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 16FB8C4E1996F611001182EC /* ClassRoster.xcdatamodeld */; };
 		16FB8C521996F611001182EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB8C511996F611001182EC /* ViewController.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		161FD649199818F600A56AE2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		168AF117199BD662003C03F2 /* canvasClassRoster.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = canvasClassRoster.plist; sourceTree = "<group>"; };
+		168AF119199BEDC4003C03F2 /* openStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openStudentViewController.swift; sourceTree = "<group>"; };
 		16FB8C471996F611001182EC /* ClassRoster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassRoster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16FB8C4B1996F611001182EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16FB8C4C1996F611001182EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				168AF117199BD662003C03F2 /* canvasClassRoster.plist */,
 				161FD649199818F600A56AE2 /* Person.swift */,
 				16FB8C531996F611001182EC /* Main.storyboard */,
+				168AF119199BEDC4003C03F2 /* openStudentViewController.swift */,
 				16FB8C561996F611001182EC /* Images.xcassets */,
 				16FB8C4E1996F611001182EC /* ClassRoster.xcdatamodeld */,
 				16FB8C4A1996F611001182EC /* Supporting Files */,
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				168AF11A199BEDC4003C03F2 /* openStudentViewController.swift in Sources */,
 				16FB8C521996F611001182EC /* ViewController.swift in Sources */,
 				16FB8C4D1996F611001182EC /* AppDelegate.swift in Sources */,
 				161FD64A199818F600A56AE2 /* Person.swift in Sources */,
