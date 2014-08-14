@@ -24,7 +24,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.tableView.dataSource = self
@@ -49,12 +50,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
     {
         println(indexPath.item)
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!)
+    {
+        if segue.identifier == "studentDetails"
+        {
+            var destination = segue.destinationViewController as DetailViewController
+            var selectedPerson = self.classRoster[self.tableView.indexPathForSelectedRow().row]
+            destination.person = selectedPerson
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
     }
     
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
