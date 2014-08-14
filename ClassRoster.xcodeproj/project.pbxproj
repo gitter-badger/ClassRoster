@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		161FD64A199818F600A56AE2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161FD649199818F600A56AE2 /* Person.swift */; };
-		168AF118199BD662003C03F2 /* canvasClassRoster.plist in Resources */ = {isa = PBXBuildFile; fileRef = 168AF117199BD662003C03F2 /* canvasClassRoster.plist */; };
 		16CF0C24199C289E009CD194 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CF0C23199C289E009CD194 /* DetailViewController.swift */; };
+		16DA4394199D5CAE008CB72D /* silhouette.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16DA4393199D5CAE008CB72D /* silhouette.jpg */; };
+		16DA4396199D659B008CB72D /* canvasClassRoster.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16DA4395199D659B008CB72D /* canvasClassRoster.plist */; };
 		16FB8C4D1996F611001182EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB8C4C1996F611001182EC /* AppDelegate.swift */; };
 		16FB8C501996F611001182EC /* ClassRoster.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 16FB8C4E1996F611001182EC /* ClassRoster.xcdatamodeld */; };
 		16FB8C521996F611001182EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB8C511996F611001182EC /* ViewController.swift */; };
@@ -30,8 +31,9 @@
 
 /* Begin PBXFileReference section */
 		161FD649199818F600A56AE2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		168AF117199BD662003C03F2 /* canvasClassRoster.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = canvasClassRoster.plist; sourceTree = "<group>"; };
 		16CF0C23199C289E009CD194 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		16DA4393199D5CAE008CB72D /* silhouette.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = silhouette.jpg; sourceTree = "<group>"; };
+		16DA4395199D659B008CB72D /* canvasClassRoster.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = canvasClassRoster.plist; sourceTree = "<group>"; };
 		16FB8C471996F611001182EC /* ClassRoster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassRoster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16FB8C4B1996F611001182EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16FB8C4C1996F611001182EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,11 +86,11 @@
 			isa = PBXGroup;
 			children = (
 				16FB8C4C1996F611001182EC /* AppDelegate.swift */,
+				16DA4395199D659B008CB72D /* canvasClassRoster.plist */,
 				16FB8C511996F611001182EC /* ViewController.swift */,
-				168AF117199BD662003C03F2 /* canvasClassRoster.plist */,
 				161FD649199818F600A56AE2 /* Person.swift */,
-				16FB8C531996F611001182EC /* Main.storyboard */,
 				16CF0C23199C289E009CD194 /* DetailViewController.swift */,
+				16FB8C531996F611001182EC /* Main.storyboard */,
 				16FB8C561996F611001182EC /* Images.xcassets */,
 				16FB8C4E1996F611001182EC /* ClassRoster.xcdatamodeld */,
 				16FB8C4A1996F611001182EC /* Supporting Files */,
@@ -99,6 +101,7 @@
 		16FB8C4A1996F611001182EC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				16DA4393199D5CAE008CB72D /* silhouette.jpg */,
 				16FB8C4B1996F611001182EC /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -202,8 +205,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				16FB8C551996F611001182EC /* Main.storyboard in Resources */,
-				168AF118199BD662003C03F2 /* canvasClassRoster.plist in Resources */,
 				16FB8C571996F611001182EC /* Images.xcassets in Resources */,
+				16DA4396199D659B008CB72D /* canvasClassRoster.plist in Resources */,
+				16DA4394199D5CAE008CB72D /* silhouette.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@ class Person: NSObject
     var firstName: String?
     var lastName: String?
     var idNumber: String?
+    var role: String?
     var idPicture: UIImage?
     
     init (firstInput:String, lastInput:String)

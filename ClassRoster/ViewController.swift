@@ -15,6 +15,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var nameList = [["firstName":"Dave","lastName":"Fry"],["firstName":"Jake","lastName":"Hawken"]]
     var classRoster = [Person]()
+    let plistPath = NSBundle.mainBundle().pathForResource("canvasClassRoster", ofType: "plist")
+    
     func initList()
     {
         for name in nameList
@@ -60,7 +62,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             var destination = segue.destinationViewController as DetailViewController
             var selectedPerson = self.classRoster[self.tableView.indexPathForSelectedRow().row]
             destination.person = selectedPerson
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
     
