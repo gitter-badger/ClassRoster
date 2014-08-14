@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="1066" y="380"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="quX-i3-SuS">
             <objects>
-                <viewController id="isI-nt-R72" sceneMemberID="viewController">
+                <viewController id="isI-nt-R72" customClass="DetailViewController" customModule="ClassRoster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ELg-Ba-1q7"/>
                         <viewControllerLayoutGuide type="bottom" id="yN9-A7-UgK"/>
