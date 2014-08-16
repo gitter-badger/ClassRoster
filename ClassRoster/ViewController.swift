@@ -4,7 +4,6 @@
 //
 //  Created by Jacob Hawken on 8/9/14.
 //  Copyright (c) 2014 Jacob Hawken. All rights reserved.
-//
 
 import UIKit
 
@@ -13,18 +12,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                             
     @IBOutlet weak var tableView: UITableView!
     
-    var nameList = [["firstName":"Dave","lastName":"Fry"],["firstName":"Jake","lastName":"Hawken"]]
     var classRoster = [Person]()
     let plistPath = NSBundle.mainBundle().pathForResource("canvasClassRoster", ofType: "plist")
-    
-    func initList()
-    {
-        for name in nameList
-        {
-            var newPerson = Person(firstInput: name["firstName"]!, lastInput: name["lastName"]!)
-            classRoster.append(newPerson)
-        }
-    }
     
     override func viewDidLoad()
     {
@@ -32,8 +21,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Do any additional setup after loading the view, typically from a nib.
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.initList()
+        let nameList = NSArray(contentsOfFile: self.plistPath)
+        self.initList(nameList)
     }
+    
+    func initList(rosterArray: NSArray)
+    {
+        for name in rosterArray
+        {
+            var newPerson = Person(firstName: name["firstName"] as String, lastName: name["lastName"] as String, idNumber: name["id"] as String)
+            classRoster.append(newPerson)
+        }
+    }
+
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
     {
