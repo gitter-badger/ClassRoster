@@ -45,7 +45,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
     {
-        println(self.classRoster[section].count)
         return self.classRoster[section].count
     }
     
