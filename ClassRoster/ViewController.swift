@@ -12,7 +12,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                             
     @IBOutlet weak var tableView: UITableView!
     
-    var classRoster = [Person]()
+    var classRoster = [[Person](), [Person]()] as Array
     let plistPath = NSBundle.mainBundle().pathForResource("canvasClassRoster", ofType: "plist")
     
     override func viewDidLoad()
@@ -30,7 +30,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         for name in rosterArray
         {
             var newPerson = Person(firstName: name["firstName"] as String, lastName: name["lastName"] as String, idNumber: name["id"] as String)
-            classRoster.append(newPerson)
+            if newPerson.role == "student"
+            {
+                classRoster[0].append(newPerson)
+            }
+            if newPerson.role == "teacher"
+            {
+                classRoster[1].append(newPerson)
+            }
         }
     }
 
@@ -53,6 +60,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     {
         println(indexPath.item)
         
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+        return 2
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!)

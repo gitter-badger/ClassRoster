@@ -242,5 +242,25 @@
 		<key>lastName</key>
 		<string>Zhang</string>
 	</dict>
+    <dict>
+        <key>role</key>
+        <string>teacher</string>
+        <key>id</key>
+        <string>1234567</string>
+        <key>firstName</key>
+        <string>Brad</string>
+        <key>lastName</key>
+        <string>Johnson</string>
+    </dict>
+    <dict>
+        <key>role</key>
+        <string>teacher</string>
+        <key>id</key>
+        <string>4567890</string>
+        <key>firstName</key>
+        <string>John</string>
+        <key>lastName</key>
+        <string>Clem</string>
+    </dict>
 </array>
 </plist>
