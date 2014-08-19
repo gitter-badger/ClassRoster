@@ -16,11 +16,12 @@ class Person: NSObject
     var role: String?
     var idPicture: UIImage?
     
-    init(firstName: String, lastName: String, idNumber: String)
+    init(firstName: String, lastName: String, idNumber: String, role: String)
     {
         self.firstName = firstName
         self.lastName = lastName
         self.idNumber = idNumber
+        self.role = role
     }
     
     func fullName() -> NSString

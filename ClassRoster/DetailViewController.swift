@@ -13,7 +13,7 @@ class DetailViewController: UIViewController
     @IBOutlet weak var studentFirstName: UITextField!
     @IBOutlet weak var studentLastName: UITextField!
     @IBOutlet weak var studentPicture: UIImageView!
-    var person = Person(firstName: "John", lastName: "Doe",idNumber: "12345")
+    var person = Person(firstName: "John", lastName: "Doe", idNumber: "12345", role: "student")
     var image: UIImage = UIImage(named:"silhouette.jpg")
     
     override func viewDidLoad()

@@ -22,6 +22,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.tableView.dataSource = self
         self.tableView.delegate = self
         let nameList = NSArray(contentsOfFile: self.plistPath)
+        println(nameList.count)
         self.initList(nameList)
     }
     
@@ -29,7 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     {
         for name in rosterArray
         {
-            var newPerson = Person(firstName: name["firstName"] as String, lastName: name["lastName"] as String, idNumber: name["id"] as String)
+            var newPerson = Person(firstName: name["firstName"] as String, lastName: name["lastName"] as String, idNumber: name["id"] as String, role: name["role"] as String)
             if newPerson.role == "student"
             {
                 classRoster[0].append(newPerson)
@@ -44,13 +45,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
     {
-        return self.classRoster.count
+        println(self.classRoster[section].count)
+        return self.classRoster[section].count
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        var personForRow = self.classRoster[indexPath.row]
+        var personForRow = self.classRoster[indexPath.section][indexPath.row]
         cell.textLabel.text = personForRow.fullName()
         
         return cell
@@ -66,12 +68,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return 2
     }
     
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String
+    {
+        if (section == 0)
+        {
+            return "Students"
+        }
+        else
+        {
+            return "Teachers"
+        }
+    }
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!)
     {
         if segue.identifier == "studentDetails"
         {
             var destination = segue.destinationViewController as DetailViewController
-            var selectedPerson = self.classRoster[self.tableView.indexPathForSelectedRow().row]
+            var selectedArray = self.classRoster[self.tableView.indexPathForSelectedRow().section]
+            var selectedPerson = selectedArray[self.tableView.indexPathForSelectedRow().row]
             destination.person = selectedPerson
         }
     }
