@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController
+class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     @IBOutlet weak var studentFirstName: UITextField!
     @IBOutlet weak var studentLastName: UITextField!
@@ -19,16 +19,44 @@ class DetailViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.studentFirstName.delegate = self
+        self.studentLastName.delegate = self
         self.studentFirstName.text = (person.firstName)
-        self.studentLastName.text = (person.lastName)
+        self.studentLastName.text = (person.lastName)    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
         if person.idPicture != nil
         {
-            self.studentPicture.image = person.idPicture
+            self.studentPicture?.image = person.idPicture
         }
         else
         {
-            self.studentPicture.image = image
+            self.studentPicture?.image = image
         }
+    }
+    
+    @IBAction func photoButtonPressed(sender: UIButton)
+    {
+        var imagePickerController = UIImagePickerController()
+        
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        
+        self.presentViewController(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!)
+    {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        var editedImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        self.studentPicture?.image = editedImage
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController!)
+    {
+        picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func didReceiveMemoryWarning()
