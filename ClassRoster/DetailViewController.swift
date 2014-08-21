@@ -22,7 +22,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         self.studentFirstName.delegate = self
         self.studentLastName.delegate = self
         self.studentFirstName.text = (person.firstName)
-        self.studentLastName.text = (person.lastName)    }
+        self.studentLastName.text = (person.lastName)
+    }
     
     override func viewWillAppear(animated: Bool)
     {
@@ -52,6 +53,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         picker.dismissViewControllerAnimated(true, completion: nil)
         var editedImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.studentPicture?.image = editedImage
+        person.idPicture = editedImage  //I'm still not sure why adding this line fixed the display of the image from BEFORE I ever go to change the image
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController!)
