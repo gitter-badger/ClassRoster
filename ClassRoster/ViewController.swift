@@ -87,7 +87,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             var destination = segue.destinationViewController as DetailViewController
             var selectedArray = self.classRoster[self.tableView.indexPathForSelectedRow().section]
             var selectedPerson = selectedArray[self.tableView.indexPathForSelectedRow().row]
-            destination.person = selectedPerson
+            destination.detailViewPerson = selectedPerson
         }
     }
     

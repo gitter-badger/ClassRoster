@@ -10,30 +10,33 @@ import UIKit
 
 class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
-    @IBOutlet weak var studentFirstName: UITextField!
-    @IBOutlet weak var studentLastName: UITextField!
-    @IBOutlet weak var studentPicture: UIImageView!
-    var person = Person(firstName: "John", lastName: "Doe", idNumber: "12345", role: "student")
-    var image: UIImage = UIImage(named:"silhouette.jpg")
+    @IBOutlet weak var detailViewFirstName: UITextField!
+    @IBOutlet weak var detailViewLastName: UITextField!
+    @IBOutlet weak var detailViewPicture: UIImageView!
+    var detailViewPerson = Person(firstName: "John", lastName: "Doe", idNumber: "12345", role: "student")
+    var defaultImage: UIImage = UIImage(named:"silhouette.jpg")
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.studentFirstName.delegate = self
-        self.studentLastName.delegate = self
-        self.studentFirstName.text = (person.firstName)
-        self.studentLastName.text = (person.lastName)
+        self.detailViewFirstName.delegate = self
+        self.detailViewLastName.delegate = self
+        self.detailViewFirstName.text = (detailViewPerson.firstName)
+        self.detailViewLastName.text = (detailViewPerson.lastName)
+        self.detailViewPicture.layer.cornerRadius = self.detailViewPicture.frame.size.width / 2;
+        self.detailViewPicture.clipsToBounds = true
+        applyPlainShadow(self.detailViewPicture)
     }
     
     override func viewWillAppear(animated: Bool)
     {
-        if person.idPicture != nil
+        if detailViewPerson.idPicture != nil
         {
-            self.studentPicture?.image = person.idPicture
+            self.detailViewPicture?.image = detailViewPerson.idPicture
         }
         else
         {
-            self.studentPicture?.image = image
+            self.detailViewPicture?.image = defaultImage
         }
     }
     
@@ -52,13 +55,23 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     {
         picker.dismissViewControllerAnimated(true, completion: nil)
         var editedImage = info[UIImagePickerControllerOriginalImage] as UIImage
-        self.studentPicture?.image = editedImage
-        person.idPicture = editedImage
+        self.detailViewPicture?.image = editedImage
+        detailViewPerson.idPicture = editedImage
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController!)
     {
         picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func applyPlainShadow(view: UIView)
+    {
+        var layer = view.layer
+        
+        layer.shadowColor = UIColor.blackColor().CGColor
+        layer.shadowOffset = CGSize(width: 0, height: 10)
+        layer.shadowOpacity = 0.4
+        layer.shadowRadius = 5
     }
     
     override func didReceiveMemoryWarning()
