@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
@@ -23,9 +24,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         self.detailViewLastName.delegate = self
         self.detailViewFirstName.text = (detailViewPerson.firstName)
         self.detailViewLastName.text = (detailViewPerson.lastName)
-        self.detailViewPicture.layer.cornerRadius = self.detailViewPicture.frame.size.width / 2;
         self.detailViewPicture.clipsToBounds = true
-        applyPlainShadow(self.detailViewPicture)
+        imageProperties(self.detailViewPicture)
     }
     
     override func viewWillAppear(animated: Bool)
@@ -64,14 +64,22 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func applyPlainShadow(view: UIView)
+    func imageProperties(view: UIView)
     {
         var layer = view.layer
         
+        // Makes the image round
+        layer.cornerRadius = self.detailViewPicture.frame.size.width / 2
+        
+        // Applies border
+        layer.borderColor = UIColor.blackColor().CGColor
+        layer.borderWidth = 0.5
+        
+        // Is supposed to apply a shadow. Not sure why it doesn't.
         layer.shadowColor = UIColor.blackColor().CGColor
-        layer.shadowOffset = CGSize(width: 0, height: 10)
-        layer.shadowOpacity = 0.4
-        layer.shadowRadius = 5
+        layer.shadowOffset = CGSizeMake(0, 0)
+        layer.shadowOpacity = 1.0
+        layer.shadowRadius = 3.0
     }
     
     override func didReceiveMemoryWarning()
