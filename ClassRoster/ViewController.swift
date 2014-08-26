@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Jacob Hawken. All rights reserved.
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
