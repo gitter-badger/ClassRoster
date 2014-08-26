@@ -16,6 +16,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBOutlet weak var detailViewPicture: UIImageView!
     var detailViewPerson = Person(firstName: "John", lastName: "Doe", idNumber: "12345", role: "student")
     var defaultImage: UIImage = UIImage(named:"silhouette.jpg")
+    var madeChange: MadeChange?
     
     override func viewDidLoad()
     {
@@ -44,6 +45,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     {
         self.detailViewPerson.firstName = self.detailViewFirstName.text
         self.detailViewPerson.lastName = self.detailViewLastName.text
+        self.madeChange?.changesMade += 1
+        println((self.madeChange?.changesMade))
     }
     
     @IBAction func photoButtonPressed(sender: UIButton)
@@ -63,6 +66,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         var editedImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.detailViewPicture?.image = editedImage
         detailViewPerson.idPicture = editedImage
+        self.madeChange?.changesMade += 1
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController!)

@@ -15,21 +15,45 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var classRoster = [[Person](), [Person]()] as Array
     let plistPath = NSBundle.mainBundle().pathForResource("canvasClassRoster", ofType: "plist")
+    let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+    var madeChange: MadeChange = MadeChange()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        let nameList = NSArray(contentsOfFile: self.plistPath)
-        println(nameList.count)
-        self.initList(nameList)
+        
+//        self.loadPeopleFromDisk()
+    }
+    
+    func loadPeopleFromDisk() {
+        if let people = NSKeyedUnarchiver.unarchiveObjectWithFile(documentsPath + "/archive") as? [[Person]]
+        {
+            self.classRoster = people
+        }
+        else
+        {
+            let nameList = NSArray(contentsOfFile: self.plistPath)
+            self.initList(nameList)
+        }
+
     }
     
     override func viewWillAppear(animated: Bool)
     {
+        if self.madeChange.changesMade > 0
+        {
+            self.saveRootObjectToDisk()
+            self.madeChange.changesMade = 0
+        }
+        self.loadPeopleFromDisk()
         self.tableView.reloadData()
+    }
+    
+    func saveRootObjectToDisk() {
+        NSKeyedArchiver.archiveRootObject(self.classRoster, toFile: documentsPath + "/archive")
     }
     
     func initList(rosterArray: NSArray)
@@ -59,6 +83,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         var personForRow = self.classRoster[indexPath.section][indexPath.row]
         cell.textLabel.text = personForRow.fullName()
+        
+        //image stuff
+        if personForRow.idPicture != nil
+        {
+            cell.imageView.image = personForRow.idPicture
+        }
+        else
+        {
+            cell.imageView.image = UIImage(named:"silhouette.jpg")
+        }
+        
+        cell.imageView.clipsToBounds = true
+        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width
         
         return cell
     }
@@ -94,6 +131,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             var selectedArray = self.classRoster[self.tableView.indexPathForSelectedRow().section]
             var selectedPerson = selectedArray[self.tableView.indexPathForSelectedRow().row]
             destination.detailViewPerson = selectedPerson
+            destination.madeChange = self.madeChange
         }
     }
     
