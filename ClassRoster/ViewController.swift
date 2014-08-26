@@ -26,6 +26,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.initList(nameList)
     }
     
+    override func viewWillAppear(animated: Bool)
+    {
+        self.tableView.reloadData()
+    }
+    
     func initList(rosterArray: NSArray)
     {
         for name in rosterArray
@@ -64,7 +69,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
-        return 2
+        return classRoster.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String

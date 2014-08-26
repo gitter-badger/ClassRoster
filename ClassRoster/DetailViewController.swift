@@ -22,8 +22,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         super.viewDidLoad()
         self.detailViewFirstName.delegate = self
         self.detailViewLastName.delegate = self
-        self.detailViewFirstName.text = (detailViewPerson.firstName)
-        self.detailViewLastName.text = (detailViewPerson.lastName)
+        self.detailViewFirstName.text = detailViewPerson.firstName
+        self.detailViewLastName.text = detailViewPerson.lastName
         self.detailViewPicture.clipsToBounds = true
         imageProperties(self.detailViewPicture)
     }
@@ -38,6 +38,12 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         {
             self.detailViewPicture?.image = defaultImage
         }
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField!)
+    {
+        self.detailViewPerson.firstName = self.detailViewFirstName.text
+        self.detailViewPerson.lastName = self.detailViewLastName.text
     }
     
     @IBAction func photoButtonPressed(sender: UIButton)
@@ -76,10 +82,10 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         layer.borderWidth = 0.5
         
         // Is supposed to apply a shadow. Not sure why it doesn't.
-        layer.shadowColor = UIColor.blackColor().CGColor
-        layer.shadowOffset = CGSizeMake(0, 0)
-        layer.shadowOpacity = 1.0
-        layer.shadowRadius = 3.0
+//        layer.shadowColor = UIColor.blackColor().CGColor
+//        layer.shadowOffset = CGSizeMake(0, 0)(width: 0, height: 0)
+//        layer.shadowOpacity = 1.0
+//        layer.shadowRadius = 3.0
     }
     
     override func didReceiveMemoryWarning()
