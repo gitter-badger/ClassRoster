@@ -63,16 +63,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mtc-Fc-ljs">
-                                <rect key="frame" x="200" y="200" width="200" height="200"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="LOr-D7-b1d"/>
-                                    <constraint firstAttribute="height" constant="200" id="lE5-eW-XAh"/>
-                                </constraints>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btF-7v-Iyl">
+                                <rect key="frame" x="251" y="472" width="97" height="30"/>
+                                <state key="normal" title="Update Image">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="351" y="483" width="97" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="photoButtonPressed:" destination="isI-nt-R72" eventType="touchUpInside" id="Hda-kX-5uh"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmp-Mt-nBm">
-                                <rect key="frame" x="167" y="83" width="265" height="82"/>
+                                <rect key="frame" x="167" y="83" width="265" height="160"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DvQ-1w-16r">
                                         <rect key="frame" x="105" y="4" width="152" height="30"/>
@@ -100,53 +104,93 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2VC-19-qPJ">
+                                        <rect key="frame" x="105" y="90" width="152" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="105" y="90" width="152" height="30"/>
+                                        </variation>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GitHub Username:" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="88" translatesAutoresizingMaskIntoConstraints="NO" id="3tI-Xc-xgh">
+                                        <rect key="frame" x="9" y="76" width="88" height="46"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="67" width="89" height="65"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NsV-ge-HL6">
+                                        <rect key="frame" x="105" y="131" width="152" height="19"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="123" y="133" width="116" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Student ID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txr-dn-AzA">
+                                        <rect key="frame" x="8" y="130" width="88" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="9" y="133" width="88" height="21"/>
+                                        </variation>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="jbD-vC-C8B" firstAttribute="leading" secondItem="qmp-Mt-nBm" secondAttribute="leading" constant="8" id="5Xm-83-IfL"/>
                                     <constraint firstItem="jbD-vC-C8B" firstAttribute="top" secondItem="qmp-Mt-nBm" secondAttribute="top" constant="8" id="Kbs-nN-5M2"/>
                                     <constraint firstAttribute="width" constant="265" id="Pqg-G6-GRX"/>
-                                    <constraint firstAttribute="height" constant="82" id="qGx-vO-ZIL"/>
+                                    <constraint firstAttribute="height" constant="160" id="qGx-vO-ZIL"/>
                                 </constraints>
+                                <variation key="heightClass=regular">
+                                    <mask key="subviews">
+                                        <include reference="NsV-ge-HL6"/>
+                                        <include reference="txr-dn-AzA"/>
+                                    </mask>
+                                </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btF-7v-Iyl">
-                                <rect key="frame" x="251" y="408" width="97" height="30"/>
-                                <state key="normal" title="Update Image">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="photoButtonPressed:" destination="isI-nt-R72" eventType="touchUpInside" id="Hda-kX-5uh"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mtc-Fc-ljs">
+                                <rect key="frame" x="200" y="264" width="200" height="200"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="LOr-D7-b1d"/>
+                                    <constraint firstAttribute="height" constant="200" id="lE5-eW-XAh"/>
+                                </constraints>
+                                <variation key="widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="300" y="274" width="200" height="200"/>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="qmp-Mt-nBm" secondAttribute="centerX" id="BCf-En-2qE">
-                                <variation key="heightClass=compact" constant="130"/>
-                            </constraint>
+                            <constraint firstAttribute="centerX" secondItem="qmp-Mt-nBm" secondAttribute="centerX" id="BCf-En-2qE"/>
                             <constraint firstItem="qmp-Mt-nBm" firstAttribute="top" secondItem="ELg-Ba-1q7" secondAttribute="bottom" constant="19" id="E4S-XO-pCC">
                                 <variation key="heightClass=compact" constant="100"/>
                             </constraint>
-                            <constraint firstAttribute="centerY" secondItem="mtc-Fc-ljs" secondAttribute="centerY" id="FPH-SM-KBr"/>
-                            <constraint firstAttribute="centerX" secondItem="mtc-Fc-ljs" secondAttribute="centerX" id="Xln-AB-IqE">
-                                <variation key="heightClass=compact" constant="-130"/>
-                            </constraint>
+                            <constraint firstAttribute="centerX" secondItem="mtc-Fc-ljs" secondAttribute="centerX" id="Xln-AB-IqE"/>
                             <constraint firstItem="btF-7v-Iyl" firstAttribute="top" secondItem="mtc-Fc-ljs" secondAttribute="bottom" constant="8" id="ZVS-wJ-sNh"/>
-                            <constraint firstAttribute="centerX" secondItem="btF-7v-Iyl" secondAttribute="centerX" id="eVc-o1-kPL">
-                                <variation key="heightClass=compact" constant="-130"/>
-                            </constraint>
+                            <constraint firstAttribute="centerX" secondItem="btF-7v-Iyl" secondAttribute="centerX" id="eVc-o1-kPL"/>
+                            <constraint firstItem="mtc-Fc-ljs" firstAttribute="top" secondItem="qmp-Mt-nBm" secondAttribute="bottom" constant="21" id="fAy-HW-2UJ"/>
                         </constraints>
+                        <variation key="heightClass=regular"/>
                     </view>
                     <navigationItem key="navigationItem" id="SLY-Hw-YON"/>
                     <connections>
                         <outlet property="detailViewFirstName" destination="DvQ-1w-16r" id="Wbu-7a-lkU"/>
+                        <outlet property="detailViewGitHubUserName" destination="2VC-19-qPJ" id="ztX-3c-f8Q"/>
                         <outlet property="detailViewLastName" destination="OZI-aw-5cz" id="O0S-yR-tfs"/>
                         <outlet property="detailViewPicture" destination="mtc-Fc-ljs" id="Luk-zA-NiX"/>
+                        <outlet property="detailViewStudentId" destination="NsV-ge-HL6" id="peS-6h-VIW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fo-KJ-uwo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1759" y="379"/>
+            <point key="canvasLocation" x="1759" y="378"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ybu-xT-p9D">

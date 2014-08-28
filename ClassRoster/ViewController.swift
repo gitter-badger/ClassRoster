@@ -24,8 +24,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
-//        self.loadPeopleFromDisk()
     }
     
     func loadPeopleFromDisk() {
@@ -94,8 +92,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.imageView.image = UIImage(named:"silhouette.jpg")
         }
         
-        cell.imageView.clipsToBounds = true
-        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width
+        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2
+        cell.imageView.layer.masksToBounds = true
+        cell.imageView.layer.borderWidth = 0.5
         
         return cell
     }

@@ -14,6 +14,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBOutlet weak var detailViewFirstName: UITextField!
     @IBOutlet weak var detailViewLastName: UITextField!
     @IBOutlet weak var detailViewPicture: UIImageView!
+    @IBOutlet weak var detailViewGitHubUserName: UITextField!
+    @IBOutlet weak var detailViewStudentId: UILabel!
+    
     var detailViewPerson = Person(firstName: "John", lastName: "Doe", idNumber: "12345", role: "student")
     var defaultImage: UIImage = UIImage(named:"silhouette.jpg")
     var madeChange: MadeChange?
@@ -25,7 +28,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         self.detailViewLastName.delegate = self
         self.detailViewFirstName.text = detailViewPerson.firstName
         self.detailViewLastName.text = detailViewPerson.lastName
-        self.detailViewPicture.clipsToBounds = true
+        self.detailViewStudentId.text = detailViewPerson.idNumber
         imageProperties(self.detailViewPicture)
     }
     
@@ -45,6 +48,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     {
         self.detailViewPerson.firstName = self.detailViewFirstName.text
         self.detailViewPerson.lastName = self.detailViewLastName.text
+        self.detailViewPerson.gitHubUserName = self.detailViewGitHubUserName.text
         self.madeChange?.changesMade += 1
         println((self.madeChange?.changesMade))
     }
@@ -79,10 +83,11 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         var layer = view.layer
         
         // Makes the image round
+        self.detailViewPicture.clipsToBounds = true
         layer.cornerRadius = self.detailViewPicture.frame.size.width / 2
         
         // Applies border
-        layer.borderColor = UIColor.blackColor().CGColor
+        layer.borderColor = UIColor.grayColor().CGColor
         layer.borderWidth = 0.5
         
         // Is supposed to apply a shadow. Not sure why it doesn't.

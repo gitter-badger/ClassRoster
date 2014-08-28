@@ -15,6 +15,7 @@ class Person: NSObject, NSCoding
     var idNumber: String?
     var role: String?
     var idPicture: UIImage?
+    var gitHubUserName: String?
     
     init(firstName: String, lastName: String, idNumber: String, role: String)
     {
