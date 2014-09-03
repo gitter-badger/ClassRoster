@@ -78,23 +78,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as CustomTableViewCell
         var personForRow = self.classRoster[indexPath.section][indexPath.row]
-        cell.textLabel.text = personForRow.fullName()
+
+        cell.myLabel.text = personForRow.fullName()
         
         //image stuff
         if personForRow.idPicture != nil
         {
-            cell.imageView.image = personForRow.idPicture
+            cell.myImageView.image = personForRow.idPicture
         }
         else
         {
-            cell.imageView.image = UIImage(named:"silhouette.jpg")
+            cell.myImageView.image = UIImage(named:"silhouette.jpg")
         }
         
-        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2
-        cell.imageView.layer.masksToBounds = true
-        cell.imageView.layer.borderWidth = 0.5
+        cell.myImageView.layer.cornerRadius = cell.myImageView.frame.size.width / 2
+        cell.myImageView.layer.masksToBounds = true
+        cell.myImageView.layer.borderWidth = 0.5
+        cell.myImageView.clipsToBounds = true
+        cell.myImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        //cell.imageView.setNeedsDisplay()
         
         return cell
     }
