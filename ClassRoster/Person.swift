@@ -17,6 +17,7 @@ class Person: NSObject, NSCoding
     var idPicture: UIImage?
     var gitHubUserName: String?
     var profileImage: UIImage?
+    var isNewPerson: Bool?
     
     init(firstName: String, lastName: String, idNumber: String, role: String)
     {
@@ -34,6 +35,9 @@ class Person: NSObject, NSCoding
         self.idNumber = aDecoder.decodeObjectForKey("idNumber") as? String
         self.role = aDecoder.decodeObjectForKey("role") as? String
         self.idPicture = aDecoder.decodeObjectForKey("idPicture") as? UIImage
+        self.gitHubUserName = aDecoder.decodeObjectForKey("gitHubUserName") as? String
+        self.profileImage = aDecoder.decodeObjectForKey("profileImage") as? UIImage
+        self.isNewPerson = aDecoder.decodeObjectForKey("isNewPerson") as? Bool
     }
     
     func encodeWithCoder(aCoder: NSCoder!)
@@ -43,6 +47,9 @@ class Person: NSObject, NSCoding
         aCoder.encodeObject(self.idNumber, forKey: "idNumber")
         aCoder.encodeObject(self.role, forKey: "role")
         aCoder.encodeObject(self.idPicture, forKey: "idPicture")
+        aCoder.encodeObject(self.gitHubUserName, forKey: "gitHubUserName")
+        aCoder.encodeObject(self.profileImage, forKey: "profileImage")
+        aCoder.encodeObject(self.isNewPerson, forKey: "isNewPerson")
     }
     
     func fullName() -> NSString

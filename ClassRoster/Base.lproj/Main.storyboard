@@ -101,7 +101,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ujb-3w-0Hp">
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="Qd1-oV-7WA"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add Student" id="Qd1-oV-7WA">
+                            <connections>
+                                <segue destination="isI-nt-R72" kind="show" identifier="newPerson" id="p7l-u2-4rQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="83G-zp-0QY" id="47J-w6-XLJ"/>
@@ -192,10 +196,10 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anM-3R-QUT">
-                                        <rect key="frame" x="143" y="94" width="114" height="21"/>
+                                        <rect key="frame" x="135" y="90" width="122" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="0yx-Ju-BJA"/>
-                                            <constraint firstAttribute="width" constant="114" id="b04-ly-lWL"/>
+                                            <constraint firstAttribute="width" constant="122" id="Dfu-5a-qNa"/>
+                                            <constraint firstAttribute="height" constant="30" id="U63-47-Rbc"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -203,7 +207,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLS-mT-1Pe">
                                         <rect key="frame" x="105" y="90" width="30" height="30"/>
-                                        <state key="normal" title="Button" image="github_cat.png">
+                                        <state key="normal" title="Button">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -212,12 +216,12 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="anM-3R-QUT" secondAttribute="trailing" constant="8" id="5C7-2N-xXh"/>
+                                    <constraint firstAttribute="bottom" secondItem="anM-3R-QUT" secondAttribute="bottom" constant="40" id="08q-xL-ZQC"/>
                                     <constraint firstItem="jbD-vC-C8B" firstAttribute="leading" secondItem="qmp-Mt-nBm" secondAttribute="leading" constant="8" id="5Xm-83-IfL"/>
                                     <constraint firstItem="jbD-vC-C8B" firstAttribute="top" secondItem="qmp-Mt-nBm" secondAttribute="top" constant="8" id="Kbs-nN-5M2"/>
                                     <constraint firstAttribute="width" constant="265" id="Pqg-G6-GRX"/>
-                                    <constraint firstAttribute="bottom" secondItem="anM-3R-QUT" secondAttribute="bottom" constant="45" id="m5b-aw-PWG"/>
                                     <constraint firstAttribute="height" constant="160" id="qGx-vO-ZIL"/>
+                                    <constraint firstAttribute="trailing" secondItem="anM-3R-QUT" secondAttribute="trailing" constant="8" id="rWN-sc-K7D"/>
                                 </constraints>
                                 <variation key="heightClass=regular">
                                     <mask key="subviews">
@@ -307,7 +311,7 @@
             <point key="canvasLocation" x="271.875" y="379.22535211267603"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="github_cat.png" width="140" height="140"/>
-    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="p7l-u2-4rQ"/>
+    </inferredMetricsTieBreakers>
 </document>

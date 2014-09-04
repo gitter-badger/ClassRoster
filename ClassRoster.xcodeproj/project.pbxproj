@@ -10,7 +10,6 @@
 		160D38BB19AED9230059A2AE /* github_cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 160D38BA19AED9230059A2AE /* github_cat.png */; };
 		160D38BD19AEE41A0059A2AE /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D38BC19AEE41A0059A2AE /* CustomTableViewCell.swift */; };
 		161FD64A199818F600A56AE2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161FD649199818F600A56AE2 /* Person.swift */; };
-		163189FE19AC5E400049B993 /* MadeChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163189FD19AC5E400049B993 /* MadeChange.swift */; };
 		16CF0C24199C289E009CD194 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CF0C23199C289E009CD194 /* DetailViewController.swift */; };
 		16DA4394199D5CAE008CB72D /* silhouette.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16DA4393199D5CAE008CB72D /* silhouette.jpg */; };
 		16DA4396199D659B008CB72D /* canvasClassRoster.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16DA4395199D659B008CB72D /* canvasClassRoster.plist */; };
@@ -36,7 +35,6 @@
 		160D38BA19AED9230059A2AE /* github_cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github_cat.png; sourceTree = "<group>"; };
 		160D38BC19AEE41A0059A2AE /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		161FD649199818F600A56AE2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		163189FD19AC5E400049B993 /* MadeChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadeChange.swift; sourceTree = "<group>"; };
 		16CF0C23199C289E009CD194 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		16DA4393199D5CAE008CB72D /* silhouette.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = silhouette.jpg; sourceTree = "<group>"; };
 		16DA4395199D659B008CB72D /* canvasClassRoster.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = canvasClassRoster.plist; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 				16DA4395199D659B008CB72D /* canvasClassRoster.plist */,
 				16FB8C511996F611001182EC /* ViewController.swift */,
 				161FD649199818F600A56AE2 /* Person.swift */,
-				163189FD19AC5E400049B993 /* MadeChange.swift */,
 				16CF0C23199C289E009CD194 /* DetailViewController.swift */,
 				16FB8C531996F611001182EC /* Main.storyboard */,
 				160D38BC19AEE41A0059A2AE /* CustomTableViewCell.swift */,
@@ -235,7 +232,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				163189FE19AC5E400049B993 /* MadeChange.swift in Sources */,
 				16FB8C521996F611001182EC /* ViewController.swift in Sources */,
 				16FB8C4D1996F611001182EC /* AppDelegate.swift in Sources */,
 				160D38BD19AEE41A0059A2AE /* CustomTableViewCell.swift in Sources */,

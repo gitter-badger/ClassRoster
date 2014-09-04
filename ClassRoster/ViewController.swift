@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DetailViewControllerDelegate
 {
                             
     @IBOutlet weak var tableView: UITableView!
@@ -16,43 +16,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var classRoster = [[Person](), [Person]()] as Array
     let plistPath = NSBundle.mainBundle().pathForResource("canvasClassRoster", ofType: "plist")
     let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-    var madeChange: MadeChange = MadeChange()
     
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-    }
-    
-    func loadPeopleFromDisk() {
-        if let people = NSKeyedUnarchiver.unarchiveObjectWithFile(documentsPath + "/archive") as? [[Person]]
-        {
-            self.classRoster = people
-        }
-        else
-        {
-            let nameList = NSArray(contentsOfFile: self.plistPath)
-            self.initList(nameList)
-        }
-
-    }
-    
-    override func viewWillAppear(animated: Bool)
-    {
-        if self.madeChange.changesMade > 0
-        {
-            self.saveRootObjectToDisk()
-            self.madeChange.changesMade = 0
-        }
-        self.loadPeopleFromDisk()
-        self.tableView.reloadData()
-    }
-    
-    func saveRootObjectToDisk() {
-        NSKeyedArchiver.archiveRootObject(self.classRoster, toFile: documentsPath + "/archive")
-    }
+    //MARK: #Class Roster Management
     
     func initList(rosterArray: NSArray)
     {
@@ -69,7 +34,59 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
     }
+    
+    func addStudent(person: Person)
+    {
+        self.addStudentSource(person)
+    }
+    
+    func addStudentSource(person: Person)
+    {
+        classRoster[0].append(person)
+    }
+    
+    //MARK: #View Methods
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        self.loadPeopleFromDisk()
+        self.tableView.reloadData()
+    }
+    
+    //MARK: #Data Persistence
+    
+    func loadPeopleFromDisk() {
+        if let people = NSKeyedUnarchiver.unarchiveObjectWithFile(documentsPath + "/archive") as? [[Person]]
+        {
+            self.classRoster = people
+        }
+        else
+        {
+            let nameList = NSArray(contentsOfFile: self.plistPath)
+            self.initList(nameList)
+        }
 
+    }
+    
+    func saveRootObjectToDisk()
+    {
+        NSKeyedArchiver.archiveRootObject(self.classRoster, toFile: documentsPath + "/archive")
+    }
+
+    func saveChanges()
+    {
+        self.saveRootObjectToDisk()
+    }
+    
+    //MARK: #tableView methods
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
     {
@@ -110,7 +127,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
-        return classRoster.count
+        return 2
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String
@@ -125,23 +142,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    //MARK: #Segue Stuff
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!)
     {
         if segue.identifier == "studentDetails"
         {
             var destination = segue.destinationViewController as DetailViewController
-            var selectedArray = self.classRoster[self.tableView.indexPathForSelectedRow().section]
-            var selectedPerson = selectedArray[self.tableView.indexPathForSelectedRow().row]
+            //var selectedArray = self.classRoster[self.tableView.indexPathForSelectedRow().section]
+            var selectedPerson = self.classRoster[self.tableView.indexPathForSelectedRow().section][self.tableView.indexPathForSelectedRow().row]
+            
             destination.detailViewPerson = selectedPerson
-            destination.madeChange = self.madeChange
+            destination.delegate = self
+        }
+        if segue.identifier == "newPerson"
+        {
+            var destination = segue.destinationViewController as DetailViewController
+            var selectedPerson: Person = Person(firstName: "First", lastName: "Last", idNumber: "000000", role: "student")
+            selectedPerson.isNewPerson = true
+            destination.detailViewPerson = selectedPerson
+            destination.delegate = self
         }
     }
     
-
+    //MARK: #Do we really need this thing?
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
 }
-

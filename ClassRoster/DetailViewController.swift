@@ -8,8 +8,11 @@
 import UIKit
 import QuartzCore
 import Foundation
-import CoreData
-import MobileCoreServices
+
+protocol DetailViewControllerDelegate {
+    func saveChanges()
+    func addStudent()
+}
 
 class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
@@ -26,41 +29,58 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     var defaultGitHubImage: UIImage = UIImage(named: "github_cat.png")
     var gitHubUserUrl: NSURL?
     var imageDownloadQueue = NSOperationQueue()
-    var madeChange: MadeChange?
     var gitHubUserName: String?
+    var delegate : DetailViewControllerDelegate?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.detailViewFirstName.delegate = self
         self.detailViewLastName.delegate = self
+        
+        //Adds border to
+        self.gitHubUserNameLabel.layer.borderColor = UIColor.grayColor().CGColor
+        self.gitHubUserNameLabel.layer.borderWidth = 0.5
+        self.setupTextFieldNotificationObserver()
     }
     
     override func viewWillAppear(animated: Bool)
     {
+        if self.detailViewPerson.isNewPerson == true
+        {
+            self.detailViewPerson.profileImage = defaultGitHubImage
+            self.detailViewPerson.idPicture = defaultImage
+            do
+            {
+                self.studentId("Student ID Number", message: "Please enter student ID number.", alertStyle: UIAlertControllerStyle.Alert)
+            } while self.detailViewPerson.idNumber == "000000"
+        }
+        
+        if self.detailViewPerson.gitHubUserName == nil //if no username
+        {
+            self.detailViewGitHubUserImage.setImage(defaultGitHubImage, forState: UIControlState.Normal)
+            self.gitHubUserNameLabel.text = "<-- click to add"
+        }
+        
         // Decides the main image.
         if detailViewPerson.idPicture != nil
         {
             self.detailViewPicture?.image = detailViewPerson.idPicture
             
-            if self.detailViewPerson.gitHubUserName == nil
+            if self.detailViewPerson.gitHubUserName != nil //if no username
             {
-                self.detailViewGitHubUserImage.setImage(defaultGitHubImage, forState: UIControlState.Normal)
-            }
-            else
-            {
-                println(self.detailViewPerson.gitHubUserName)
+                self.gitHubUserNameLabel.text = "  " + self.detailViewPerson.gitHubUserName!
+                self.detailViewGitHubUserImage.setImage(self.detailViewPerson.profileImage, forState: UIControlState.Normal)
             }
         }
-        else  //that is, if the the person doesn't have a stored image
+        else  //that is, if the the person doesn't hßave a stored image
         {
             self.detailViewPicture?.image = defaultImage
         }
         
-        self.detailViewFirstName.text = detailViewPerson.firstName
-        self.detailViewLastName.text = detailViewPerson.lastName
-        self.detailViewStudentId.text = detailViewPerson.idNumber
-        self.gitHubUserNameLabel.text = detailViewPerson.gitHubUserName
+        self.detailViewFirstName.text = self.detailViewPerson.firstName
+        self.detailViewLastName.text = self.detailViewPerson.lastName
+        self.detailViewStudentId.text = self.detailViewPerson.idNumber
         
         //rounds the image and puts a border around it
         imageProperties(self.detailViewPicture)
@@ -70,10 +90,21 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     {
         super.viewDidAppear(animated)
         
-        if self.detailViewPerson.gitHubUserName != nil
+//        if self.detailViewPerson.gitHubUserName != nil
+//        {
+//            downloadFromGithub(self.detailViewPerson.gitHubUserName!)
+//        }
+    }
+    
+    override func viewDidDisappear(animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        if self.detailViewPerson.isNewPerson == true
         {
-            downloadFromGithub(self.gitHubUserNameLabel.text)
+            self.delegate?.addStudent(self.detailViewPerson)
         }
+        self.detailViewPerson.isNewPerson = false
+        self.delegate?.saveChanges()
     }
     
     
@@ -87,7 +118,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         var profilePhotoURL = NSURL()
         let session = NSURLSession.sharedSession()
         self.activityIndicator.startAnimating()
-        let task = NSURLSession.sharedSession().dataTaskWithURL(gitHubUserUrl)
+        NSURLSession.sharedSession().dataTaskWithURL(gitHubUserUrl)
             {(data, response, error) -> Void in
                 
                 var err: NSError?
@@ -104,24 +135,29 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
                     println("JSON Error \(err!.localizedDescription)")
                 }
                 
+                self.detailViewPerson.gitHubUserName = gitHubUserName
+                self.gitHubUserNameLabel.text = "  " + gitHubUserName
+                
                 if let avatarURL = jsonResult["avatar_url"] as? String
                 {
                     profilePhotoURL = NSURL(string: avatarURL)
+                } else
+                {
+                    self.activityIndicator.stopAnimating()
+                    return
                 }
                 
                 var profilePhotoData = NSData(contentsOfURL: profilePhotoURL)
                 var profilePhotoImage = UIImage(data: profilePhotoData)
                 
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    println("Main queue block run")
                     self.detailViewGitHubUserImage.setImage(profilePhotoImage, forState: UIControlState.Normal)
                     self.detailViewPerson.profileImage = profilePhotoImage as UIImage
                     self.detailViewPicture.image = profilePhotoImage as UIImage
                     self.detailViewPerson.idPicture = profilePhotoImage as UIImage
                     self.activityIndicator.stopAnimating()
                 })
-            }
-        task.resume()
+            }.resume()
     }
     
     //MARK: #User Interaction Stuff
@@ -137,7 +173,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         let alert = UIAlertController(title: title, message: message, preferredStyle: alertStyle)
         
         alert.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            textField.placeholder = "GitHub Username:"
+            textField.placeholder = "GitHub Username"
         }
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (UIAlertAction) -> Void in
@@ -147,24 +183,46 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
             var textField = alert.textFields[0] as UITextField
             println(textField.text)
-            self.gitHubUserNameLabel.text = textField.text
+            self.gitHubUserNameLabel.text = "  " + textField.text
             self.downloadFromGithub(textField.text)
         }))
         
         presentViewController(alert, animated: true, completion: nil)
     }
     
-    func textFieldDidEndEditing(textField: UITextField!)
+    func studentId(title: String, message: String, alertStyle: UIAlertControllerStyle)
     {
-        self.detailViewPerson.firstName = self.detailViewFirstName.text
-        self.detailViewPerson.lastName = self.detailViewLastName.text
-        if self.detailViewPerson.gitHubUserName != self.gitHubUserNameLabel.text
-        {
-            self.detailViewPerson.gitHubUserName = self.gitHubUserNameLabel.text
-            downloadFromGithub(self.gitHubUserNameLabel.text)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: alertStyle)
+        
+        alert.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            textField.placeholder = "0000000"
         }
-        self.madeChange?.changesMade += 1
-        println(self.madeChange?.changesMade)
+        
+//        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (UIAlertAction) -> Void in
+//            self.activityIndicator.stopAnimating()
+//        }))
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+            var textField = alert.textFields[0] as UITextField
+            println(textField.text)
+            self.detailViewStudentId.text = textField.text
+            self.detailViewPerson.idNumber = textField.text
+        }))
+        
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func setupTextFieldNotificationObserver()
+    {
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        let mainQueue = NSOperationQueue.mainQueue()
+        
+        var observer = notificationCenter.addObserverForName(UITextFieldTextDidChangeNotification, object: nil, queue: mainQueue)
+        { _ in
+            self.detailViewPerson.firstName = self.detailViewFirstName.text
+            self.detailViewPerson.lastName = self.detailViewLastName.text
+            println(self.detailViewFirstName.text)
+        }
     }
     
     //MARK: #Image and Camera Methods
@@ -209,7 +267,6 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         var editedImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.detailViewPicture?.image = editedImage
         detailViewPerson.idPicture = editedImage
-        self.madeChange?.changesMade += 1
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController!)
