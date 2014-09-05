@@ -16,6 +16,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var classRoster = [[Person](), [Person]()] as Array
     let plistPath = NSBundle.mainBundle().pathForResource("canvasClassRoster", ofType: "plist")
     let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+    var appendToRoster: shouldAddToRoster?
+    var defaultPerson = Person(firstName: "First", lastName: "Last", idNumber: "000000", role: "student")
     
     //MARK: #Class Roster Management
     
@@ -24,6 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         for name in rosterArray
         {
             var newPerson = Person(firstName: name["firstName"] as String, lastName: name["lastName"] as String, idNumber: name["id"] as String, role: name["role"] as String)
+            newPerson.isNewPerson = false
             if newPerson.role == "student"
             {
                 classRoster[0].append(newPerson)
@@ -37,13 +40,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func addStudent(person: Person)
     {
-        self.addStudentSource(person)
+        self.classRoster[0].append(person)
     }
     
-    func addStudentSource(person: Person)
-    {
-        classRoster[0].append(person)
-    }
+    
     
     //MARK: #View Methods
     
@@ -51,12 +51,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     {
         super.viewDidLoad()
         
+        if self.appendToRoster == nil
+        {
+            self.appendToRoster = shouldAddToRoster(person: defaultPerson)
+        }
         self.tableView.dataSource = self
         self.tableView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool)
     {
+        if self.appendToRoster?.readyToAdd == true
+        {
+            var newStudent = self.appendToRoster?.personArray[0]
+            self.addStudent(newStudent!)
+            self.appendToRoster?.empty()
+            self.saveChanges()
+        }
         self.loadPeopleFromDisk()
         self.tableView.reloadData()
     }
@@ -160,7 +171,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             var destination = segue.destinationViewController as DetailViewController
             var selectedPerson: Person = Person(firstName: "First", lastName: "Last", idNumber: "000000", role: "student")
             selectedPerson.isNewPerson = true
+            self.appendToRoster?.newPerson(selectedPerson)
             destination.detailViewPerson = selectedPerson
+            destination.appendToRoster = appendToRoster
             destination.delegate = self
         }
     }
@@ -170,5 +183,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
+    }
+}
+
+class shouldAddToRoster: NSObject
+{
+    var readyToAdd: Bool?
+    var personArray = [Person]() as Array
+    
+    init (person: Person)
+    {
+        personArray.append(person)
+        self.readyToAdd = false
+    }
+    
+    func newPerson (person: Person)
+    {
+        personArray.removeAll()
+        personArray.append(person)
+        self.readyToAdd = false
+    }
+    
+    func empty()
+    {
+        personArray.removeAll()
+        self.readyToAdd = false
     }
 }

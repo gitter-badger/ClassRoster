@@ -9,13 +9,15 @@ import UIKit
 import QuartzCore
 import Foundation
 
-protocol DetailViewControllerDelegate {
+protocol DetailViewControllerDelegate
+{
     func saveChanges()
-    func addStudent()
+//    func addStudent()
 }
 
 class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
+    //MARK: #Outlets and UI Elements
     @IBOutlet weak var detailViewFirstName: UITextField!
     @IBOutlet weak var detailViewLastName: UITextField!
     @IBOutlet weak var detailViewPicture: UIImageView!
@@ -24,6 +26,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var detailViewGitHubUserImage: UIButton!
     
+    //MARK: #Global variables
     var detailViewPerson = Person(firstName: "John", lastName: "Doe", idNumber: "12345", role: "student")
     var defaultImage: UIImage = UIImage(named:"silhouette.jpg")
     var defaultGitHubImage: UIImage = UIImage(named: "github_cat.png")
@@ -31,6 +34,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     var imageDownloadQueue = NSOperationQueue()
     var gitHubUserName: String?
     var delegate : DetailViewControllerDelegate?
+    var appendToRoster: shouldAddToRoster?
+    
+    //MARK: #View Methods
     
     override func viewDidLoad()
     {
@@ -46,14 +52,20 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     override func viewWillAppear(animated: Bool)
     {
+        self.detailViewFirstName.text = self.detailViewPerson.firstName
+        self.detailViewLastName.text = self.detailViewPerson.lastName
+        self.detailViewStudentId.text = self.detailViewPerson.idNumber
+        
         if self.detailViewPerson.isNewPerson == true
         {
-            self.detailViewPerson.profileImage = defaultGitHubImage
-            self.detailViewPerson.idPicture = defaultImage
+            self.detailViewGitHubUserImage.setImage(defaultGitHubImage, forState: UIControlState.Normal)
+            self.detailViewPicture.image = defaultImage
             do
             {
                 self.studentId("Student ID Number", message: "Please enter student ID number.", alertStyle: UIAlertControllerStyle.Alert)
             } while self.detailViewPerson.idNumber == "000000"
+            
+            self.appendToRoster?.readyToAdd = true
         }
         
         if self.detailViewPerson.gitHubUserName == nil //if no username
@@ -78,10 +90,6 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             self.detailViewPicture?.image = defaultImage
         }
         
-        self.detailViewFirstName.text = self.detailViewPerson.firstName
-        self.detailViewLastName.text = self.detailViewPerson.lastName
-        self.detailViewStudentId.text = self.detailViewPerson.idNumber
-        
         //rounds the image and puts a border around it
         imageProperties(self.detailViewPicture)
     }
@@ -96,12 +104,12 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
 //        }
     }
     
-    override func viewDidDisappear(animated: Bool)
+    override func viewWillDisappear(animated: Bool)
     {
-        super.viewDidDisappear(animated)
+        super.viewWillDisappear(animated)
         if self.detailViewPerson.isNewPerson == true
         {
-            self.delegate?.addStudent(self.detailViewPerson)
+//            self.delegate?.addStudent(self.detailViewPerson)
         }
         self.detailViewPerson.isNewPerson = false
         self.delegate?.saveChanges()
