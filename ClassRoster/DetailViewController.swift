@@ -60,10 +60,11 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         {
             self.detailViewGitHubUserImage.setImage(defaultGitHubImage, forState: UIControlState.Normal)
             self.detailViewPicture.image = defaultImage
-            do
+            
+            if self.detailViewPerson.idNumber == "000000"
             {
                 self.studentId("Student ID Number", message: "Please enter student ID number.", alertStyle: UIAlertControllerStyle.Alert)
-            } while self.detailViewPerson.idNumber == "000000"
+            }
             
             self.appendToRoster?.readyToAdd = true
         }
