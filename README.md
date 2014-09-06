@@ -14,7 +14,7 @@ I wanted changes made in the detail view controller to be saved to disk, but sin
 
 Also according to assignment requirements, my app makes full use of auto layout and constraints to ensure that my app is clear and sensibly laid out in all orientations and on all devices.
 
--![alt text](http://i.gyazo.com/b6076e7d3f400918b1354f9c54dbf4e8.gif "Dyamic layout using auto layout and constraints.")
+<img src="http://i.gyazo.com/b6076e7d3f400918b1354f9c54dbf4e8.gif" width="374" height="332"></img>
 
 BONUS:
 Though not required for the assignment, I decided that I wanted to add an "Add Student" button to the main view controller to allow the addition of new students to the class roster that were not in the original plist file. Rather than create a third view controller for this specific case, I created a separate segue to the detail view controller which creates a new Person with default attributes (first name: "First", last name: "Last", student ID: "00000000", etc), with the isNewPerson value set to "true." I added logic to the detail vc to check the isNewPerson value, and if it's true to require (via an alert view controller) to give the new student a new student ID number.
