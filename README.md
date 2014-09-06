@@ -2,7 +2,7 @@ ClassRoster
 ===========
 This project was my first complete app, created for an introductory iOS course at Code Fellows.
 
-The assignment was to create an application that lets you view and manage the class roster. It needed a main view controller with a table view of all the students and teachers, and a detail view controller, triggered when any of the individual students is selected from the table view. The detail view controller needs to display all the relevant information about the person, including name, student ID, GitHub username, and a profile picture.
+The assignment was to create an application that lets you view and manage the class roster. It needed a main view controller with a table view of all the students and teachers, and a detail view controller, triggered when any of the individual students is selected from the table view. The detail view controller needed to display all the relevant information about the person, including name, student ID, GitHub username, and a profile picture.
 
 A plist file was created from data on our class website. The first time the app runs, the app needed to use a plist or some other static list to generate an array of "Person" objects, which each contain all of the values relevant to each person: first name, last name, student ID number, profile picture, GitHub username, GitHub avatar, role (student or teacher), profile picture, and a Boolean variable called isNewPerson which tracks whether or not the student is a new addition. (This value for all of the Person objects generated from the plist is "false.")
 
