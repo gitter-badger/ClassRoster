@@ -14,11 +14,11 @@ I wanted changes made in the detail view controller to be saved to disk, but sin
 
 Also according to assignment requirements, my app makes full use of auto layout and constraints to ensure that my app is clear and sensibly laid out in all orientations and on all devices.
 
+-![alt text](http://i.gyazo.com/b6076e7d3f400918b1354f9c54dbf4e8.gif "Dyamic layout using auto layout and constraints.")
+
 BONUS:
 Though not required for the assignment, I decided that I wanted to add an "Add Student" button to the main view controller to allow the addition of new students to the class roster that were not in the original plist file. Rather than create a third view controller for this specific case, I created a separate segue to the detail view controller which creates a new Person with default attributes (first name: "First", last name: "Last", student ID: "00000000", etc), with the isNewPerson value set to "true." I added logic to the detail vc to check the isNewPerson value, and if it's true to require (via an alert view controller) to give the new student a new student ID number.
 
 This presented a new problem though, similar to the problem with the saving function, because the main array of Person objects to which this new person must be appended is back in the main view controller. Accessing it by means of a delegate protocol wasn't work, so instead, I created an class/object called shouldAddToRoster, which contains an array of Person objects, a boolean variable called readyToAdd, and a few methods for managing these. When the "Add Person" segue is triggered, and a default person is generated, that person is then placed inside the shouldAddToRoster object's array, and the readyToAdd value is set to false. Once the new person has been given a student ID number, the readyToAdd variable is set to true. Upon returning to the main view controller, readyToAdd is checked, and if set to true, the person inside of shouldAddToRoster's Person array is appended to the main class roster array, the array inside of shouldAddToRoster is emptied, and readyToAdd is set to false.
 
 Enjoy!
-
--![alt text](http://i.gyazo.com/b6076e7d3f400918b1354f9c54dbf4e8.gif "Dyamic layout using auto layout and constraints.")
