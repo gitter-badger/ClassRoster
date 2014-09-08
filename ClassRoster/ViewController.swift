@@ -193,6 +193,7 @@ class shouldAddToRoster: NSObject
     
     init (person: Person)
     {
+        personArray.removeAll()
         personArray.append(person)
         self.readyToAdd = false
     }

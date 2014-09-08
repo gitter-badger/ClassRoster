@@ -292,12 +292,6 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         // Applies border
         layer.borderColor = UIColor.grayColor().CGColor
         layer.borderWidth = 0.5
-        
-        // Is supposed to apply a shadow. Not sure why it doesn't.
-//        layer.shadowColor = UIColor.blackColor().CGColor
-//        layer.shadowOffset = CGSizeMake(0, 0)(width: 0, height: 0)
-//        layer.shadowOpacity = 1.0
-//        layer.shadowRadius = 3.0
     }
 
     //MARK: #Do I even really need this thing?
