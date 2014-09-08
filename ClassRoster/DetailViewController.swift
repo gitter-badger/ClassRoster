@@ -63,10 +63,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             
             if self.detailViewPerson.idNumber == "000000"
             {
-                self.studentId("Student ID Number", message: "Please enter student ID number.", alertStyle: UIAlertControllerStyle.Alert)
+                self.studentId("Student ID Number", message: "Please enter a new student ID number.", alertStyle: UIAlertControllerStyle.Alert)
             }
-            
-            self.appendToRoster?.readyToAdd = true
         }
         
         if self.detailViewPerson.gitHubUserName == nil //if no username
@@ -110,7 +108,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         super.viewWillDisappear(animated)
         if self.detailViewPerson.isNewPerson == true
         {
-//            self.delegate?.addStudent(self.detailViewPerson)
+            self.appendToRoster?.readyToAdd = true
         }
         self.detailViewPerson.isNewPerson = false
         self.delegate?.saveChanges()
