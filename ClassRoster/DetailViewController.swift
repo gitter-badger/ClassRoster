@@ -125,7 +125,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         var profilePhotoURL = NSURL()
         let session = NSURLSession.sharedSession()
         self.activityIndicator.startAnimating()
-        NSURLSession.sharedSession().dataTaskWithURL(gitHubUserUrl)
+        NSURLSession.sharedSession().dataTaskWithURL(gitHubUserUrl!)
             {(data, response, error) -> Void in
                 
                 var err: NSError?
@@ -188,7 +188,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         }))
         
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
-            var textField = alert.textFields[0] as UITextField
+            var textField = alert.textFields![0] as UITextField
             println(textField.text)
             self.gitHubUserNameLabel.text = "  " + textField.text
             self.downloadFromGithub(textField.text)
@@ -210,7 +210,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
 //        }))
         
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
-            var textField = alert.textFields[0] as UITextField
+            var textField = alert.textFields![0] as UITextField
             println(textField.text)
             self.detailViewStudentId.text = textField.text
             self.detailViewPerson.idNumber = textField.text

@@ -81,7 +81,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         else
         {
-            let nameList = NSArray(contentsOfFile: self.plistPath)
+            let nameList = NSArray(contentsOfFile: self.plistPath!)
             self.initList(nameList)
         }
 
@@ -99,12 +99,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //MARK: #tableView methods
     
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return self.classRoster[section].count
     }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as CustomTableViewCell
         var personForRow = self.classRoster[indexPath.section][indexPath.row]
@@ -131,13 +131,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         println(indexPath.item)
-        
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
     
@@ -155,13 +154,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //MARK: #Segue Stuff
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)
     {
         if segue.identifier == "studentDetails"
         {
             var destination = segue.destinationViewController as DetailViewController
             //var selectedArray = self.classRoster[self.tableView.indexPathForSelectedRow().section]
-            var selectedPerson = self.classRoster[self.tableView.indexPathForSelectedRow().section][self.tableView.indexPathForSelectedRow().row]
+            var selectedPerson = self.classRoster[self.tableView.indexPathForSelectedRow()!.section][self.tableView.indexPathForSelectedRow()!.row]
             
             destination.detailViewPerson = selectedPerson
             destination.delegate = self

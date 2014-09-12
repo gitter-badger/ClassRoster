@@ -27,8 +27,7 @@ class Person: NSObject, NSCoding
         self.role = role
     }
     
-    required init(coder aDecoder: NSCoder!)
-    {
+    required init(coder aDecoder: NSCoder) {
         super.init()
         self.firstName = aDecoder.decodeObjectForKey("firstName") as? String
         self.lastName = aDecoder.decodeObjectForKey("lastName") as? String
@@ -40,16 +39,27 @@ class Person: NSObject, NSCoding
         self.isNewPerson = aDecoder.decodeObjectForKey("isNewPerson") as? Bool
     }
     
-    func encodeWithCoder(aCoder: NSCoder!)
+    func encodeWithCoder(aCoder: NSCoder)
     {
-        aCoder.encodeObject(self.firstName, forKey: "firstName")
-        aCoder.encodeObject(self.lastName, forKey: "lastName")
-        aCoder.encodeObject(self.idNumber, forKey: "idNumber")
-        aCoder.encodeObject(self.role, forKey: "role")
-        aCoder.encodeObject(self.idPicture, forKey: "idPicture")
-        aCoder.encodeObject(self.gitHubUserName, forKey: "gitHubUserName")
-        aCoder.encodeObject(self.profileImage, forKey: "profileImage")
-        aCoder.encodeObject(self.isNewPerson, forKey: "isNewPerson")
+        aCoder.encodeObject(self.firstName!, forKey: "firstName")
+        aCoder.encodeObject(self.lastName!, forKey: "lastName")
+        aCoder.encodeObject(self.idNumber!, forKey: "idNumber")
+        aCoder.encodeObject(self.role!, forKey: "role")
+        if self.idPicture != nil {
+            aCoder.encodeObject(self.idPicture!, forKey: "idPicture")
+        }
+        if self.gitHubUserName != nil {
+            aCoder.encodeObject(self.gitHubUserName!, forKey: "gitHubUserName")
+
+        }
+        if self.profileImage != nil {
+            aCoder.encodeObject(self.profileImage!, forKey: "profileImage")
+
+        }
+        if self.isNewPerson != nil {
+            aCoder.encodeObject(self.isNewPerson!, forKey: "isNewPerson")
+
+        }
     }
     
     func fullName() -> NSString
