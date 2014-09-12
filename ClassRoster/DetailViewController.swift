@@ -12,7 +12,7 @@ import Foundation
 protocol DetailViewControllerDelegate
 {
     func saveChanges()
-//    func addStudent()
+    func addStudent(person: Person)
 }
 
 class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
@@ -34,7 +34,6 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     var imageDownloadQueue = NSOperationQueue()
     var gitHubUserName: String?
     var delegate : DetailViewControllerDelegate?
-    var appendToRoster: shouldAddToRoster?
     
     //MARK: #View Methods
     
@@ -108,7 +107,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         super.viewWillDisappear(animated)
         if self.detailViewPerson.isNewPerson == true
         {
-            self.appendToRoster?.readyToAdd = true
+            self.delegate?.addStudent(detailViewPerson)
         }
         self.detailViewPerson.isNewPerson = false
         self.delegate?.saveChanges()
