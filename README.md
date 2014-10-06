@@ -1,5 +1,6 @@
 ClassRoster
 ===========
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/jakehawken/ClassRoster?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 This project was my first complete app, created for an introductory iOS course at Code Fellows.
 
 The assignment was to create an application that lets you view and manage the class roster. It needed a main view controller with a table view of all the students and teachers, and a detail view controller, triggered when any of the individual students is selected from the table view. The detail view controller needed to display all the relevant information about the person, including name, student ID, GitHub username, and a profile picture.
